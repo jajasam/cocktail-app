@@ -45,12 +45,12 @@ function Home() {
             />
           </video>
         </section>
-        <main>
-          <section className="intro">
+        <section className="intro">
             <h1>Welcome to the cocktail lab</h1>
             <p>Variety of delicious cocktail recipes, ranging from classic cocktails to modern twists on traditional favorites.</p>
             <button>Discover cocktail</button>
           </section>
+        <main>
             <section className="featured-cocktails">
               <div className="cocktails">
                 {

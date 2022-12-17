@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Home />
+      <Search />
       <Footer />
     </div>
   );
