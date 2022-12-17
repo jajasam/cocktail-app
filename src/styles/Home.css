@@ -1,15 +1,11 @@
-video {
+.hero {
     width: 100vw;
     z-index: -1;
-    height: 100vh;
+    height: 70vh;
     object-fit: cover;
 }
 
-.video-wrapper {
-    posiiton: relative;
-}
-
-.video-wrapper::after {
+/* .video-wrapper::after {
     content: '';
     width: 100%;
     height: 100%;
@@ -20,4 +16,135 @@ video {
     right: 0;
     bottom: 0;
     left: 0;
+} */
+
+video.cocktails {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin: 160px auto;
+}
+
+main {
+    padding: 0 1.15rem;
+    margin: auto;
+    max-width: 1111px;
+}
+
+/*
+******************************************
+        INTRO SECTION 
+******************************************
+*/
+
+.intro {
+    margin: 40px auto 80px auto;
+}
+
+.intro h1 {
+    margin-bottom: 0;
+}
+
+.intro p {
+    margin-top: 0;
+    opacity: 0.8;
+    letter-spacing: normal;
+}
+
+/*
+******************************************
+        FEATURED COCKTAILS SECTION 
+******************************************
+*/
+
+.featured-cocktails .cocktails {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.featured-cocktails .cocktail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.featured-cocktails .cocktail:nth-child(2n) {
+    flex-direction: row-reserve;
+}
+
+.featured-cocktails .cocktail img {
+    border-radius: 8px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    transition: all 0.2s ease;
+    z-index: 10;
+    margin: auto;
+}
+
+.featured-cocktails .cocktail img:hover {
+    transform: scale(1.2);
+}
+
+.cocktail-name {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: black;
+    font-size: 32px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.fruits {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.fruit {
+    position: absolute;
+}
+
+.fruit {
+    position: absolute;
+}
+
+/*
+******************************************
+        FEATURED ALCOHOL SECTION 
+******************************************
+*/
+
+.featured-alcohols {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.featured-alcohols div {
+    position: relative;
+    width: 25%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.featured-alcohols div:hover {
+    transform: scale(1.1);
+}
+
+.featured-alcohols svg {
+    fill: rgba(243, 225, 194, 0.4);
+}
+
+.featured-alcohols img {
+    transform: rotate(25deg);
+    position: absolute;
+    top: -75px;
 }

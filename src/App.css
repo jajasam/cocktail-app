@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
 
+:root {
+    --light: #F3E1C2;
+    --dark-blue: rgba(21, 28, 42, 1);
+}
+
 * {
     box-sizing: border-box;
     /* border: 1px solid red; */
@@ -7,7 +12,10 @@
 
 body {
     margin: 0;
-    min-height: 4000px;
     font-family: 'Hind Siliguri', sans-serif;
     letter-spacing: 1px;
+}
+
+img {
+    object-fit: cover;
 }
