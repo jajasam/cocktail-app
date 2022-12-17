@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
 
 * {
@@ -9,8 +8,6 @@
 body {
     margin: 0;
     min-height: 4000px;
-    font-family: 'PT Serif', serif;
     font-family: 'Hind Siliguri', sans-serif;
-
     letter-spacing: 1px;
 }
