@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 
 import '../styles/Header.css'
 
@@ -21,11 +22,13 @@ function Header() {
                     </li>
                 </ul>
             </nav>
-            <img 
-             src={require('../assets/logo.png')} 
-             alt="Cheers! Logo" 
-             className={`logo ${topOffset > 0 ? 'small' : ''}`}
-            />
+            <Link to="/">
+                <img 
+                src={require('../assets/logo.png')} 
+                alt="Cheers! Logo" 
+                className={`logo ${topOffset > 0 ? 'small' : ''}`}
+                />
+            </Link>
             <div className="hamburger-icon">
                 <div></div>
                 <div></div>

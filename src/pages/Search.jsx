@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import '../styles/Search.css'
 
@@ -8,24 +8,29 @@ function Search() {
     {
       category: 'Categories',
       param: 'c',
-      subFilters: []
+      subFilters: [],
+      isVisible: false
     },
     {
       category: 'Alcohols',
       param: 'a',
-      subFilters: []
+      subFilters: [],
+      isVisible: false
     },
     {
       category: 'Glasses',
       param: 'g',
-      subFilters: []
+      subFilters: [],
+      isVisible: false
     },
     {
       category: 'Ingredients',
       param: 'i',
-      subFilters: []
+      subFilters: [],
+      isVisible: false
     }
   ])
+  const [filtersElem, setFiltersElem] = useState(null)
 
   useEffect(() => {
       //get random cocktails when there are no filters
@@ -46,16 +51,31 @@ function Search() {
         param: elem.param,
         subFilters: data.drinks
       }
-    ]
-  )))}, [])
+    ]),
+  ))}, [])
 
-  const filtersElem = filters?.map((filter,i)  => <div key={i}>
-    <p>{filter.category}</p>
-    {
-      filter.subFilters.map((el, i) => <p key={i}>{Object.values(el)}</p>)
-    }
-  </div>)
+  function handleFiltersVisibility(categoryToUpdate) {
+    //show or hide filters
+    console.log(categoryToUpdate)
+  }
 
+  useEffect(() => {
+    setFiltersElem(filters.map((elem,i)  => elem.subFilters.length > 0 ? 
+      <div key={i}>
+        <p 
+         onClick={(e) => handleFiltersVisibility(elem.category)}
+        >
+            <strong>{elem.category}</strong>
+        </p>
+        {
+          elem.isVisible && 
+          elem.subFilters.map((el, i) => <p key={i}>{Object.values(el)}</p>)
+        }
+      </div> : ''
+    )
+  )
+}, [filters])
+  
   return (
     <>
       <section className="search-banner">
@@ -68,9 +88,6 @@ function Search() {
       <main>
         <section className="search">
           <h1>Cocktails</h1>
-          <input type="text" placeholder="Rechercher" />
-          <select name="Categories" id="">
-          </select>
         </section>
         <section className="results">
           <div className="filters">

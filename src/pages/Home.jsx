@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 
 import '../styles/Home.css'
 
@@ -8,8 +9,8 @@ function Home() {
   const [featuredAlcohols, setFeaturedAlcohols] = useState(['gin', 'vodka', 'rum', 'tequila'])
   const [fruitsBackground, setFruitsBackground] = useState(['strawberries', 'cantaloupe', 'watermelon', 'kiwi', 'mango'])
 
-  const featuredCocktailsElem = featuredCocktails.map(item =>
-    <div className="cocktail"> 
+  const featuredCocktailsElem = featuredCocktails.map((item, i) =>
+    <div className="cocktail" key={i}> 
       <img 
         src='https://www.thecocktaildb.com/images/media/drink/svuvrq1441208310.jpg' 
         alt=""
@@ -20,8 +21,8 @@ function Home() {
     </div>
     )
 
-  const featuredAlcoholsElem = featuredAlcohols.map(item =>
-  <div> 
+  const featuredAlcoholsElem = featuredAlcohols.map((item, i) =>
+  <div key={i}> 
     <img src={`https://www.thecocktaildb.com/images/ingredients/${item}.png`} alt={item} width="150px" height="150px" />
     <svg viewBox="0 0 200 200">
       <circle cx="100" cy="100" r="100" />
@@ -30,7 +31,7 @@ function Home() {
   </div>
   )
 
-  const fruitsBackgroundElems = fruitsBackground.map(ingredient => <img src={`https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`} alt={ingredient} width="100px" height="100px" className="fruit" />)
+  const fruitsBackgroundElems = fruitsBackground.map((ingredient, i) => <img src={`https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`} alt={ingredient} width="100px" height="100px" className="fruit" key={i} />)
 
   return (
     <div>
@@ -48,7 +49,7 @@ function Home() {
         <section className="intro">
             <h1>Welcome to the cocktail lab</h1>
             <p>Variety of delicious cocktail recipes, ranging from classic cocktails to modern twists on traditional favorites.</p>
-            <button>Discover cocktail</button>
+            <Link to="/search">Discover cocktail</Link>
           </section>
         <main>
             <section className="featured-cocktails">
