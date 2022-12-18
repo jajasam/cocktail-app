@@ -55,17 +55,24 @@ function Search() {
   ))}, [])
 
   function handleFiltersVisibility(categoryToUpdate) {
-    //show or hide filters
-    console.log(categoryToUpdate)
+    //update filters visibility when category is clicked
+    filters.map(obj => 
+    obj.category === categoryToUpdate ? 
+    setFilters(prev => [
+      ...prev,
+      {
+        ...obj,
+        isVisible: !obj.isVisible
+      }
+    ]) : '')
   }
 
   useEffect(() => {
     setFiltersElem(filters.map((elem,i)  => elem.subFilters.length > 0 ? 
       <div key={i}>
-        <p 
-         onClick={(e) => handleFiltersVisibility(elem.category)}
-        >
-            <strong>{elem.category}</strong>
+        <p onClick={(e) => handleFiltersVisibility(elem.category)}>
+          <span>{elem.category}</span>
+          <span>⌄</span>
         </p>
         {
           elem.isVisible && 
