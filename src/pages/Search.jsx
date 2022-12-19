@@ -105,9 +105,8 @@ function Search() {
         <section className="results">
           <div className="filters">
             {
-                  // filterCategories?.every(el => el.subFilters.length) &&
-                   filterCategoriesElem && 
-                   filterCategoriesElem
+              filterCategoriesElem && 
+              filterCategoriesElem
             }
           </div>
           <div className="cocktails">
