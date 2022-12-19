@@ -23,7 +23,7 @@ function Home() {
 
   const featuredAlcoholsElem = featuredAlcohols.map((item, i) =>
   <div key={i}> 
-    <img src={`https://www.thecocktaildb.com/images/ingredients/${item}.png`} alt={item} width="150px" height="150px" />
+    <img src={`https://www.thecocktaildb.com/images/ingredients/${item}.png`} alt={item} width="75px" height="75px" />
     <svg viewBox="0 0 200 200">
       <circle cx="100" cy="100" r="100" />
     </svg>
@@ -45,11 +45,13 @@ function Home() {
             alt="Red Cocktail Preparation" 
             />
           </video>
+          {/* Photo by Lefteris kallergis on Unsplash */}
+          <img src={require('../assets/mobile-hero.jpg')} alt="Cocktail" height="450px" width="100%" />
         </section>
         <section className="intro">
-            <h1>Welcome to the cocktail lab</h1>
+            <h1>Welcome to <span>the cocktail lab</span></h1>
             <p>Variety of delicious cocktail recipes, ranging from classic cocktails to modern twists on traditional favorites.</p>
-            <Link to="/search">Discover cocktail</Link>
+            <Link to="/search">Discover cocktails</Link>
           </section>
         <main>
             <section className="featured-cocktails">
