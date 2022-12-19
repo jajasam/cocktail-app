@@ -19,7 +19,7 @@
     left: 0;
 }
 
-h1 {
+.search h1 {
     text-align: center;
     text-transform: uppercase;
     margin: 2rem auto;
@@ -35,28 +35,6 @@ input {
 
 /*
 ******************************************
-        FILTERS 
-******************************************
-*/
-.filters {
-    display: flex;
-    flex-direction: column;
-    min-height: 300px;
-    width: 20%;
-}
-
-.filters p {
-    display: flex;
-    gap: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.filters p span:first-child {
-    padding-top: 3px;
-}
-/*
-******************************************
         RESULTS 
 ******************************************
 */
@@ -66,7 +44,7 @@ input {
     margin-top: 60px;
 }
 
-.cocktails {
+.results .cocktails {
     display: flex;
     flex-wrap: wrap;
     min-height: 100%;
@@ -74,7 +52,7 @@ input {
     gap: 1rem;
 }
 
-.cocktail {
+.results .cocktail {
     min-width: 200px;
     height: 250px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;

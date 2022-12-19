@@ -1,0 +1,17 @@
+.filters {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    width: 20%;
+}
+
+.filters p {
+    display: flex;
+    gap: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filters p span:first-child {
+    padding-top: 3px;
+}
