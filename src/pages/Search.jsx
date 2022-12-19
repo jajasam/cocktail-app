@@ -1,36 +1,37 @@
+import { CategoryRounded } from '@material-ui/icons'
 import { useEffect, useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 import '../styles/Search.css'
 
 function Search() {
   const [results, setResults] = useState()
-  const [filters, setFilters] = useState([
+  const [filterCategories, setFilterCategories] = useState([
     {
-      category: 'Categories',
+      categoryName: 'Categories',
       param: 'c',
       subFilters: [],
       isVisible: false
     },
     {
-      category: 'Alcohols',
+      categoryName: 'Alcohols',
       param: 'a',
       subFilters: [],
       isVisible: false
     },
     {
-      category: 'Glasses',
+      categoryName: 'Glasses',
       param: 'g',
       subFilters: [],
       isVisible: false
     },
     {
-      category: 'Ingredients',
+      categoryName: 'Ingredients',
       param: 'i',
       subFilters: [],
       isVisible: false
     }
   ])
-  const [filtersElem, setFiltersElem] = useState(null)
 
   useEffect(() => {
       //get random cocktails when there are no filters
@@ -42,47 +43,51 @@ function Search() {
 
   useEffect(() => {
     //set filters 
-    filters.map(elem => fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?${elem.param}=list`)
-    .then(res => res.json())
-    .then(data => setFilters(prev => [
-      ...prev,
-      {
-        category: elem.category,
-        param: elem.param,
-        subFilters: data.drinks
-      }
-    ]),
-  ))}, [])
+    Promise.all(
+      filterCategories
+      ?.map(filterCategory => 
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?${filterCategory.param}=list`)))
+      .then(responses => Promise.all(responses.map(res => res.json())))
+      .then(data => setFilterCategories(prev => 
+          prev.map((filterCategoryData, i) => ({
+              ...filterCategoryData,
+              subFilters: data[i].drinks
+            }
+          )
+        )
+      ))
+      .catch(err => console.error(err))
+  }, [])
 
+  
   function handleFiltersVisibility(categoryToUpdate) {
-    //update filters visibility when category is clicked
-    filters.map(obj => 
-    obj.category === categoryToUpdate ? 
-    setFilters(prev => [
-      ...prev,
-      {
-        ...obj,
-        isVisible: !obj.isVisible
-      }
-    ]) : '')
+    // update filters visibility when category is clicked
+      setFilterCategories(prev => 
+        prev.map(filterCategory => 
+        filterCategory.categoryName === categoryToUpdate 
+        ? { ...filterCategory, isVisible: !filterCategory.isVisible } 
+        : filterCategory
+      )
+    );
   }
 
-  useEffect(() => {
-    setFiltersElem(filters.map((elem,i)  => elem.subFilters.length > 0 ? 
-      <div key={i}>
-        <p onClick={(e) => handleFiltersVisibility(elem.category)}>
-          <span>{elem.category}</span>
-          <span>⌄</span>
-        </p>
-        {
-          elem.isVisible && 
-          elem.subFilters.map((el, i) => <p key={i}>{Object.values(el)}</p>)
-        }
-      </div> : ''
-    )
-  )
-}, [filters])
-  
+  const filterCategoriesElem  = filterCategories?.map((category, i) => {
+      const { categoryName, isVisible, subFilters } = category;
+
+      return <div key={i}>
+          <p onClick={() => handleFiltersVisibility(categoryName)}>
+            <span>{categoryName}</span>
+            <span>⌄</span>
+          </p>
+          {
+            isVisible && 
+            subFilters?.map((el, i) => 
+            <p key={i}>{Object.values(el)}</p>
+            )
+          }
+        </div>
+  })
+
   return (
     <>
       <section className="search-banner">
@@ -91,6 +96,7 @@ function Search() {
           src={require('../assets/search-banner-2.jpg')} 
           alt="Cocktails"
           />
+          {/* Discover a world of flavors */}
       </section>
       <main>
         <section className="search">
@@ -98,13 +104,16 @@ function Search() {
         </section>
         <section className="results">
           <div className="filters">
-              {
-                filtersElem &&
-                filtersElem
-              }
+            {
+                  // filterCategories?.every(el => el.subFilters.length) &&
+                   filterCategoriesElem && 
+                   filterCategoriesElem
+            }
           </div>
           <div className="cocktails">
-            <div className="cocktail"></div>
+            <Link to="/cocktails/11007">
+              <div className="cocktail"></div>
+            </Link>
             <div className="cocktail"></div>
             <div className="cocktail"></div>
             <div className="cocktail"></div>
