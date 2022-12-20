@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../styles/SearchFilters.css'
 
-function SearchFilters({ handleSearchFilters }) {
+function SearchFilters({ handleSearchFilters, setIsModalOpen }) {
     const [filterCategories, setFilterCategories] = useState([
     {
         categoryName: 'Categories',
@@ -61,7 +61,7 @@ function SearchFilters({ handleSearchFilters }) {
     const filterCategoriesElem  = filterCategories?.map((category, i) => {
         const { categoryName, param, isVisible, subFilters } = category;
 
-        return <div key={i}>
+        return <React.Fragment key={i}>
             <p onClick={() => handleFiltersVisibility(categoryName)} className="category-name">
                 <span>{categoryName}</span>
                 <span>⌄</span>
@@ -72,7 +72,7 @@ function SearchFilters({ handleSearchFilters }) {
                 <p key={i} onClick={() => handleSearchFilters(Object.values(el)[0], param)}>{Object.values(el)}</p>
                 )
             }
-        </div>
+        </React.Fragment>
     })
 
     return (

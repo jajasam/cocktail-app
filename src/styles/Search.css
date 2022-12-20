@@ -35,6 +35,58 @@ input {
 
 /*
 ******************************************
+        FILTERS MOBILE
+******************************************
+*/
+.filters-btn {
+    position: absolute;
+    color: var(--light);
+    top: 0;
+    right: 0;
+    border: 1.5px solid var(--light);
+    padding: 0.25rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: bold;
+    z-index: 20;
+}
+
+.filters-modal {
+    background-color: white;
+    z-index: 20;
+    width: 90%;
+    padding: 1rem;
+    position: absolute;
+    z-index: 100;
+    top: 150px;
+    border-radius: 16px;
+}
+
+.filters-modal .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*
+******************************************
+        FILTERS 
+******************************************
+*/
+.results .filters {
+    display: none;
+}
+
+.filters p {
+    cursor: pointer;
+}
+
+.filters .category-name {
+    font-weight: 700;
+}
+
+/*
+******************************************
         RESULTS 
 ******************************************
 */
@@ -42,19 +94,47 @@ input {
     display: flex;
     flex-direction: row;
     margin-top: 60px;
+    position: relative;
 }
 
 .results .cocktails {
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 100%;
-    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
     gap: 1rem;
 }
 
-.results .cocktail {
-    min-width: 200px;
-    height: 250px;
+.results .cocktail-result {
+    height: 350px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    border-radius: 8px;
+    text-decoration: none;
+    color: black;   
+}
+
+.results .cocktail-result div {
+    padding: 0 0.5rem;
+}
+
+.results .cocktail-result img {
+    width: 100%;
+}
+
+@media (min-width: 1111px) {
+    .filters-btn {
+        display: none;
+    }
+
+    .filters-modal h2 {
+        display: none;
+    }
+
+    .results .filters {
+        width: 20%;
+        display: block;
+    }
+
+    .results .cocktails {
+        width: 80%;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

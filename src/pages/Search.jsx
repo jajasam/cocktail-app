@@ -51,20 +51,15 @@ function Search() {
 
 
   const resultsElem = results?.map((result, i) => {
-    const { idDrink, strDrink, strCategory, strAlcoholic, strGlass, strDrinkThumb } = result;
+    const { idDrink, strDrink, strDrinkThumb } = result;
 
     return <Link to={`/cocktails/${idDrink}`} key={i} className="cocktail-result">
       <img src={strDrinkThumb} alt={strDrink} width="300px" height="200px" />
       <div>
         <h2>{strDrink}</h2>
-        <p>{strGlass} {strCategory} {strAlcoholic}</p>
       </div>
     </Link>
   });
-
-  function showFiltersModal() {
-    console.log('show modal')
-  }
 
   return (
     <>
@@ -76,20 +71,29 @@ function Search() {
           />
           {/* Discover a world of flavors */}
       </section>
-      <main>
+      <main className={`search ${isModalOpen ? 'overlay' : ''}`}>
         <input 
          className="search-input"
          value={searchInputValue}
          onChange={(e) => setSearchInputValue(e.target.value)}
         />
-        <div className="filters-modal">
-            <h2 onClick={() => setIsModalOpen(prev => !prev)}>Filtres</h2>
+        <section className="mobile-filters-menu">
+            <p onClick={() => setIsModalOpen(prev => !prev)} className="filters-btn">Filtres</p>
             {
               isModalOpen && 
-              <SearchFilters handleSearchFilters={handleSearchFilters} />
+              <div className="filters-modal">
+                <div className="top">
+                  <h2>Filtres</h2>
+                  <p onClick={() => setIsModalOpen(prev => !prev)}>X</p>
+                </div>
+                <SearchFilters 
+                 handleSearchFilters={handleSearchFilters}
+                 setIsModalOpen={setIsModalOpen} 
+                />
+              </div>
             }
-        </div>
-        <section className="search">
+        </section>
+        <section>
           <h1>Cocktails</h1>
         </section>
         <section className="results">
