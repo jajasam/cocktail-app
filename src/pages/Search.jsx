@@ -84,8 +84,8 @@ function Search() {
           <img 
            src={searchIcon} 
            alt="Search Icon"
-           width="30px"
-           height="30px"
+           width="20px"
+           height="20px"
            className="search-icon"
           />
         </div>
