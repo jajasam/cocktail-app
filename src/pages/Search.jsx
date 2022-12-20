@@ -90,12 +90,12 @@ function Search() {
           />
         </div>
         <section className="mobile-filters-menu">
-            <p onClick={() => setIsModalOpen(prev => !prev)} className="filters-btn">Filtres</p>
+            <p onClick={() => setIsModalOpen(prev => !prev)} className="filters-btn">Filters</p>
             {
               isModalOpen && 
               <div className="filters-modal">
                 <div className="top">
-                  <h2>Filtres</h2>
+                  <h2>Filters</h2>
                   <p onClick={() => setIsModalOpen(prev => !prev)}>X</p>
                 </div>
                 <SearchFilters 
