@@ -57,10 +57,10 @@ function Search() {
 
     return <div>
       <Link to={`/cocktails/${idDrink}`} key={i} className="cocktail-result">
-        <img src={strDrinkThumb} alt={strDrink} width="300px" height="200px" />
-        <div>
-          <h2>{strDrink}</h2>
+        <div className="img-wrapper">
+          <img src={strDrinkThumb} alt={strDrink} width="300px" height="200px" />
         </div>
+        <h2>{strDrink}</h2>
       </Link>
     </div>
   });
@@ -111,13 +111,15 @@ function Search() {
           </div>
           <div className="cocktails">
             <h1>Cocktails</h1>
-            {
-              !results &&
-              <p>We couldn't find any results for "{searchInputValue}"</p>
-            }
-            {
-              resultsElem && resultsElem
-            }
+            <div className="cocktails-results-container">
+              {
+                !results &&
+                <p>We couldn't find any results for "{searchInputValue}"</p>
+              }
+              {
+                resultsElem && resultsElem
+              }
+            </div>
           </div>
         </section>
     </main>
