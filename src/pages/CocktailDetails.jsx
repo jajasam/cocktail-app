@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import '../styles/CocktailDetails.css'
 
 function CocktailDetails() {
@@ -7,6 +7,7 @@ function CocktailDetails() {
   const [cocktailData, setCocktailData] = useState()
   const [ingredients, setIngredients] = useState([])
   const [measures, setMeasures] = useState([])
+  const navigate = useNavigate();
 
   const { strAlcoholic, strCategory, strDrink, strDrinkThumb, strIBA, strGlass, strInstructions} = cocktailData ? cocktailData[0] : '';
 
@@ -45,6 +46,7 @@ function CocktailDetails() {
   
   return (
     <main>
+      <p onClick={() => navigate(-1)} className="go-back-btn"><span>←</span><span>Go back</span></p>
       <div className="cocktail-details">
           <div className="cocktail-img">
             <img src={strDrinkThumb} alt={strDrink} />
