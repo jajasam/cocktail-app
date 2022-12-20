@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import SearchFilters from '../components/SearchFilters'
 
+import searchIcon from '../assets/search.svg'
+
 import '../styles/Search.css'
 
 function Search() {
@@ -53,29 +55,38 @@ function Search() {
   const resultsElem = results?.map((result, i) => {
     const { idDrink, strDrink, strDrinkThumb } = result;
 
-    return <Link to={`/cocktails/${idDrink}`} key={i} className="cocktail-result">
-      <img src={strDrinkThumb} alt={strDrink} width="300px" height="200px" />
-      <div>
-        <h2>{strDrink}</h2>
-      </div>
-    </Link>
+    return <div>
+      <Link to={`/cocktails/${idDrink}`} key={i} className="cocktail-result">
+        <img src={strDrinkThumb} alt={strDrink} width="300px" height="200px" />
+        <div>
+          <h2>{strDrink}</h2>
+        </div>
+      </Link>
+    </div>
   });
 
   return (
     <>
       <section className="search-banner">
         {/* Photo by M.S. Meeuwesen on Unsplash */}
-            <img 
+          <img 
            src={require('../assets/search-banner.jpg')} 
            alt="Cocktails"
           />
-          {/* Discover a world of flavors */}
       </section>
       <main className={`search ${isModalOpen ? 'overlay' : ''}`}>
         <div className="search-bar">
           <input 
           value={searchInputValue}
           onChange={(e) => setSearchInputValue(e.target.value)}
+          />
+          {/* Discover a world of flavors */}
+          <img 
+           src={searchIcon} 
+           alt="Search Icon"
+           width="30px"
+           height="30px"
+           className="search-icon"
           />
         </div>
         <section className="mobile-filters-menu">
@@ -94,14 +105,12 @@ function Search() {
               </div>
             }
         </section>
-        <section>
-          <h1>Cocktails</h1>
-        </section>
         <section className="results">
           <div className="filters">
             <SearchFilters handleSearchFilters={handleSearchFilters} />
           </div>
           <div className="cocktails">
+            <h1>Cocktails</h1>
             {
               !results &&
               <p>We couldn't find any results for "{searchInputValue}"</p>
