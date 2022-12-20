@@ -64,19 +64,20 @@ function Search() {
   return (
     <>
       <section className="search-banner">
-          {/* Photo by Kaizen Nguyễn on Unsplah */}  
-          <img 
-          src={require('../assets/search-banner-2.jpg')} 
-          alt="Cocktails"
+        {/* Photo by M.S. Meeuwesen on Unsplash */}
+            <img 
+           src={require('../assets/search-banner.jpg')} 
+           alt="Cocktails"
           />
           {/* Discover a world of flavors */}
       </section>
       <main className={`search ${isModalOpen ? 'overlay' : ''}`}>
-        <input 
-         className="search-input"
-         value={searchInputValue}
-         onChange={(e) => setSearchInputValue(e.target.value)}
-        />
+        <div className="search-bar">
+          <input 
+          value={searchInputValue}
+          onChange={(e) => setSearchInputValue(e.target.value)}
+          />
+        </div>
         <section className="mobile-filters-menu">
             <p onClick={() => setIsModalOpen(prev => !prev)} className="filters-btn">Filtres</p>
             {
