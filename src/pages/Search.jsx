@@ -8,6 +8,7 @@ import '../styles/Search.css'
 function Search() {
   const [results, setResults] = useState()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [searchInputValue, setSearchInputValue] = useState('')
 
   useEffect(() => {
       //get 10 random cocktails when there are no filters
@@ -25,6 +26,29 @@ function Search() {
         .then(data => setResults(data.drinks))
         .catch(err => console.error(err))
   }
+
+  //handle search input
+  useEffect(() => {
+    if (!searchInputValue) return;
+    //search cocktail by name
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchInputValue}`)
+    .then(res => res.status === 200 && res.json())
+    .then(data => {
+      if (data) {
+        return setResults(data.drinks)
+      }
+    })
+
+    //search ingredients by name 
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${searchInputValue}`)
+    .then(res => res.status === 200 && res.json())
+    .then(data => {
+      if (data.ingredients) {
+        return setResults(data.ingredients)
+      }
+    })
+  }, [searchInputValue])
+
 
   const resultsElem = results?.map((result, i) => {
     const { idDrink, strDrink, strCategory, strAlcoholic, strGlass, strDrinkThumb } = result;
@@ -53,7 +77,11 @@ function Search() {
           {/* Discover a world of flavors */}
       </section>
       <main>
-        <input className="search-input" />
+        <input 
+         className="search-input"
+         value={searchInputValue}
+         onChange={(e) => setSearchInputValue(e.target.value)}
+        />
         <div className="filters-modal">
             <h2 onClick={() => setIsModalOpen(prev => !prev)}>Filtres</h2>
             {
@@ -69,6 +97,10 @@ function Search() {
             <SearchFilters handleSearchFilters={handleSearchFilters} />
           </div>
           <div className="cocktails">
+            {
+              !results &&
+              <p>We couldn't find any results for "{searchInputValue}"</p>
+            }
             {
               resultsElem && resultsElem
             }
