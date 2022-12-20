@@ -46,8 +46,10 @@ function CocktailDetails() {
   return (
     <main>
       <div className="cocktail-details">
-          <img src={strDrinkThumb} alt={strDrink} />
-          <div className="text">
+          <div className="cocktail-img">
+            <img src={strDrinkThumb} alt={strDrink} />
+          </div>
+          <div className="cocktail-info">
             <h1>{strDrink}</h1>
             <p>{strCategory} {strAlcoholic} {strIBA} {strGlass}</p>
             <h2>Ingredients</h2>
