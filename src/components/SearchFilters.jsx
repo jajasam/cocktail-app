@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import '../styles/SearchFilters.css'
-
 function SearchFilters({ handleSearchFilters, setIsModalOpen }) {
     const [filterCategories, setFilterCategories] = useState([
     {
