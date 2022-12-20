@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import '../styles/SearchFilters.css'
 
-function SearchFilters() {
+function SearchFilters({ handleSearchFilters }) {
     const [filterCategories, setFilterCategories] = useState([
     {
         categoryName: 'Categories',
@@ -59,29 +59,29 @@ function SearchFilters() {
     }
 
     const filterCategoriesElem  = filterCategories?.map((category, i) => {
-        const { categoryName, isVisible, subFilters } = category;
-  
+        const { categoryName, param, isVisible, subFilters } = category;
+
         return <div key={i}>
-            <p onClick={() => handleFiltersVisibility(categoryName)}>
+            <p onClick={() => handleFiltersVisibility(categoryName)} className="category-name">
                 <span>{categoryName}</span>
                 <span>⌄</span>
             </p>
             {
                 isVisible && 
                 subFilters?.map((el, i) => 
-                <p key={i}>{Object.values(el)}</p>
+                <p key={i} onClick={() => handleSearchFilters(Object.values(el)[0], param)}>{Object.values(el)}</p>
                 )
             }
         </div>
     })
 
     return (
-        <>
+        <div>
             {
                 filterCategoriesElem &&
                 filterCategoriesElem
             }
-        </>
+        </div>
     )
 }
 
