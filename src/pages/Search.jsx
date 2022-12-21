@@ -12,14 +12,6 @@ function Search() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState('')
 
-  useEffect(() => {
-      //get 10 random cocktails when there are no filters
-        fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
-        .then(res => res.json())
-        .then(data => setResults(data.drinks))
-        .catch(err => console.error(err))
-  }, []);
-
   function handleSearchFilters(searchFilter, param) {
     const newSearchFilter = searchFilter.split(' ').join('_')
 
@@ -28,6 +20,10 @@ function Search() {
         .then(data => setResults(data.drinks))
         .catch(err => console.error(err))
   }
+
+  useEffect(() => {
+    handleSearchFilters('cocktail', 'c')
+  }, [])
 
   //handle search input
   useEffect(() => {
@@ -55,8 +51,8 @@ function Search() {
   const resultsElem = results?.map((result, i) => {
     const { idDrink, strDrink, strDrinkThumb } = result;
 
-    return <div>
-      <Link to={`/cocktails/${idDrink}`} key={i} className="cocktail-result">
+    return <div key={i}>
+      <Link to={`/cocktails/${idDrink}`}className="cocktail-result">
         <div className="img-wrapper">
           <img src={strDrinkThumb} alt={strDrink} width="300px" height="200px" />
         </div>
