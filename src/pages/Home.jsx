@@ -11,13 +11,14 @@ function Home() {
   const elementsRef = useRef(featuredCocktails.map(() => createRef()));
   const [isVisible, setIsVisible] = useState([])
 
-  window.addEventListener('scroll', () => {
-    const elementsVisibility = elementsRef.current.map((el, i )=> {
-      const top = el.current.getBoundingClientRect().top
-      return top >= 0 + window.innerHeight && top - window.innerHeight <= window.innerHeight
-    })
+  console.log(isVisible)
 
-    setIsVisible(elementsVisibility)
+  window.addEventListener('scroll', () => {
+    const observer = new IntersectionObserver(entries => 
+      entries.map((entry, i) => setIsVisible(prev => ({ ...prev, [i] : entry.isIntersecting }))
+    ))
+
+    elementsRef.current.map(el => observer.observe(el.current))
   })
 
 
