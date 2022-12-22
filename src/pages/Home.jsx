@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, createRef } from 'react';
 import { Link } from 'react-router-dom'
+import debounce from 'lodash.debounce'
 
 import '../styles/Home.css'
 
@@ -12,13 +13,15 @@ function Home() {
   const [isVisible, setIsVisible] = useState([])
 
 
-  window.addEventListener('scroll', () => {
-    const observer = new IntersectionObserver(entries => 
-      entries.map((entry, i) => setIsVisible(prev => ({ ...prev, [i] : entry.isIntersecting }))
-    ))
+  window.addEventListener('scroll', debounce(() => {
+      const observer = new IntersectionObserver(entries => 
+        entries.map((entry, i) => {
+          setIsVisible(prev => ({ ...prev, [i] : entry.isIntersecting }))
+        }))
 
-    elementsRef?.current.map(el => observer.observe(el.current))
-  })
+        elementsRef?.current.map(el => observer.observe(el.current))
+  }, 150))
+
 
   useEffect(() => {
     //Get random cocktails from The Cocktail DB API
@@ -75,6 +78,7 @@ function Home() {
           </section>
         </section>
         <main>
+            {/* <h2>Discover a world of flavors</h2> */}
             <section className="featured-cocktails">
               <div className="cocktails">
                 {
