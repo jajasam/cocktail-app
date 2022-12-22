@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, createRef } from 'react';
 import { Link } from 'react-router-dom'
 
 import '../styles/Home.css'
@@ -8,18 +8,32 @@ function Home() {
   const [featuredCocktails, setFeaturedCocktails] = useState(['', '', '', '' , ''])
   const [featuredAlcohols, setFeaturedAlcohols] = useState(['gin', 'vodka', 'rum', 'tequila'])
   const [fruitsBackground, setFruitsBackground] = useState(['strawberries', 'cantaloupe', 'watermelon', 'kiwi', 'mango'])
+  const elementsRef = useRef(featuredCocktails.map(() => createRef()));
+  const [isVisible, setIsVisible] = useState([])
 
-  const featuredCocktailsElem = featuredCocktails.map((item, i) =>
-    <div className="cocktail" key={i}> 
+  window.addEventListener('scroll', () => {
+    const elementsVisibility = elementsRef.current.map((el, i )=> {
+      const top = el.current.getBoundingClientRect().top
+      return top >= 0 + window.innerHeight && top - window.innerHeight <= window.innerHeight
+    })
+
+    setIsVisible(elementsVisibility)
+  })
+
+
+  const featuredCocktailsElem = featuredCocktails.map((item, i) => {
+    return <div className="cocktail" key={i}> 
       <img 
         src='https://www.thecocktaildb.com/images/media/drink/svuvrq1441208310.jpg' 
-        alt=""
+        alt='{item}'
         width="200px"
         height="200px"
+        ref={elementsRef.current[i]}        
+        className={isVisible[i] ? 'visible' : ''}
       />
       <p className="cocktail-name">Midnight Mint</p>
     </div>
-    )
+  })
 
   const featuredAlcoholsElem = featuredAlcohols.map((item, i) =>
   <div key={i}> 
@@ -36,23 +50,17 @@ function Home() {
   return (
     <div>
         {/* Video by Denys Gromov from Pexels: https://www.pexels.com/video/red-cocktail-preparation-5816529/ */}
-        <section className="hero">
-          {/* <h1>Discover our cocktails</h1> */}
-          <video autoPlay muted loop className="hero">
-            <source 
-            src={require('../assets/hero-video.mp4')} 
-            type="video/mp4" 
-            alt="Red Cocktail Preparation" 
-            />
-          </video>
+        <section className="hero">          
           {/* Photo by Lefteris kallergis on Unsplash */}
           <img src={require('../assets/mobile-hero.jpg')} alt="Cocktail" height="450px" width="100%" />
-        </section>
-        <section className="intro">
-            <h1>Welcome to <span>the cocktail lab</span></h1>
-            <p>Variety of delicious cocktail recipes, ranging from classic cocktails to modern twists on traditional favorites.</p>
-            <Link to="/search">Discover cocktails</Link>
+          <section className="intro">
+            <div>
+              <h1>Welcome to <span>the cocktail lab</span></h1>
+              <p>Variety of delicious cocktail recipes, ranging from classic cocktails to modern twists on traditional favorites.</p>
+              <Link to="/search">Discover cocktails</Link>
+            </div>
           </section>
+        </section>
         <main>
             <section className="featured-cocktails">
               <div className="cocktails">
