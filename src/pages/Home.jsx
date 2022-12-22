@@ -5,36 +5,48 @@ import '../styles/Home.css'
 
 
 function Home() {
-  const [featuredCocktails, setFeaturedCocktails] = useState(['', '', '', '' , ''])
+  const [randomCocktails, setRandomCocktails] = useState(['', '', '', '', ''])
   const [featuredAlcohols, setFeaturedAlcohols] = useState(['gin', 'vodka', 'rum', 'tequila'])
   const [fruitsBackground, setFruitsBackground] = useState(['strawberries', 'cantaloupe', 'watermelon', 'kiwi', 'mango'])
-  const elementsRef = useRef(featuredCocktails.map(() => createRef()));
+  const elementsRef = useRef(randomCocktails?.map(() => createRef()));
   const [isVisible, setIsVisible] = useState([])
 
-  console.log(isVisible)
 
   window.addEventListener('scroll', () => {
     const observer = new IntersectionObserver(entries => 
       entries.map((entry, i) => setIsVisible(prev => ({ ...prev, [i] : entry.isIntersecting }))
     ))
 
-    elementsRef.current.map(el => observer.observe(el.current))
+    elementsRef?.current.map(el => observer.observe(el.current))
   })
 
+  useEffect(() => {
+    //Get random cocktails from The Cocktail DB API
+    Promise.all(randomCocktails?.map(() =>
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')))
+    .then(responses => Promise.all(responses.map(res => res.json())))
+    .then(data => data.map((singleCocktailData, i) => {
+      const { idDrink, strDrink, strDrinkThumb } = singleCocktailData.drinks[0]
+      return setRandomCocktails(prev => 
+        prev.map((prevEl, prevI) => 
+          prevI == i ? {idDrink, strDrink, strDrinkThumb} : prevEl
+      ))
+    }))
+  }, [])
 
-  const featuredCocktailsElem = featuredCocktails.map((item, i) => {
-    return <div className="cocktail" key={i}> 
+  const randomCocktailsElem = randomCocktails?.map((item, i) => 
+    <Link to={`/cocktails/${item.idDrink}`} key={i} className="cocktail">
       <img 
-        src='https://www.thecocktaildb.com/images/media/drink/svuvrq1441208310.jpg' 
-        alt='{item}'
+        src={item.strDrinkThumb} 
+        alt={item.strDrink}
         width="200px"
         height="200px"
         ref={elementsRef.current[i]}        
         className={isVisible[i] ? 'visible' : ''}
       />
-      <p className="cocktail-name">Midnight Mint</p>
-    </div>
-  })
+      <p className="cocktail-name">{item.strDrink}</p>
+    </Link>
+  )
 
   const featuredAlcoholsElem = featuredAlcohols.map((item, i) =>
   <div key={i}> 
@@ -66,8 +78,8 @@ function Home() {
             <section className="featured-cocktails">
               <div className="cocktails">
                 {
-                  featuredCocktailsElem &&
-                  featuredCocktailsElem
+                  randomCocktailsElem &&
+                  randomCocktailsElem
                 }
               </div>
               <div className="fruits">
