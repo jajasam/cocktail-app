@@ -3,18 +3,18 @@ header {
     width: 100vw;
     background-color: rgba(21, 28, 42, 0);
     transition: all 1s ease;
-    /* color: #E5B96B; */
     color: #F3E1C2;
-    position: absolute;
     z-index: 20;
     display: flex;
     align-items: center;
+    position: absolute;
+    top: 0;
 }
 
 header.sticky {
     position: fixed;
     height: 100px;
-    background-color: rgba(21, 28, 42, 1);
+    background-color: var(--dark-green);
 }
 
 header .content {
@@ -46,10 +46,6 @@ header nav ul li {
     width: 140px;
     object-fit: cover;
     transition: all 1s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: -70px;
 }
 
 .logo.small {
@@ -93,16 +89,12 @@ header nav ul li {
     }
 
     .logo {
-        width: 300px;
-        left: 0; 
-        right: 0; 
-        margin-left: auto; 
-        margin-right: auto; 
-        margin-top: -140px;
+        width: 200px;
+        margin-top: -40px;
     }
 
     .logo.small {
         width: 175px;
-        margin-top: -75px;
+        margin-top: -30px;
     }
 }

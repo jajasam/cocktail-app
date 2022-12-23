@@ -135,6 +135,8 @@ input:focus {
 .results .cocktail-result h2 {
     letter-spacing: normal;
     transition: all 0.2s ease;
+    font-weight: normal;
+    font-size: 1.25rem;
 }
 
 .results .cocktail-result h2:hover {
