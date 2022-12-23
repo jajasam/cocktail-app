@@ -14,6 +14,7 @@ function Home() {
 
 
   window.addEventListener('scroll', debounce(() => {
+    if (window.innerWidth < 1111) return;
       const observer = new IntersectionObserver(entries => 
         entries.map((entry, i) => {
           setIsVisible(prev => ({ ...prev, [i] : entry.isIntersecting }))
