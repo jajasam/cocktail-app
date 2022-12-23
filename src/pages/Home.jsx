@@ -6,7 +6,7 @@ import '../styles/Home.css'
 
 
 function Home() {
-  const [randomCocktails, setRandomCocktails] = useState(['', '', '', '', ''])
+  const [randomCocktails, setRandomCocktails] = useState(['', '', '', '', '', ''])
   const [featuredAlcohols, setFeaturedAlcohols] = useState(['gin', 'vodka', 'rum', 'tequila'])
   const [fruitsBackground, setFruitsBackground] = useState(['strawberries', 'cantaloupe', 'watermelon', 'kiwi', 'mango'])
   const elementsRef = useRef(randomCocktails?.map(() => createRef()));
@@ -17,10 +17,10 @@ function Home() {
       const observer = new IntersectionObserver(entries => 
         entries.map((entry, i) => {
           setIsVisible(prev => ({ ...prev, [i] : entry.isIntersecting }))
-        }))
+        }), {threshold: 1})
 
         elementsRef?.current.map(el => observer.observe(el.current))
-  }, 150))
+  }, 25))
 
 
   useEffect(() => {
@@ -65,7 +65,6 @@ function Home() {
 
   return (
     <div>
-        {/* Video by Denys Gromov from Pexels: https://www.pexels.com/video/red-cocktail-preparation-5816529/ */}
         <section className="hero">          
           {/* Photo by Lefteris kallergis on Unsplash */}
           <img src={require('../assets/mobile-hero.jpg')} alt="Cocktail" height="450px" width="100%" />
@@ -78,8 +77,8 @@ function Home() {
           </section>
         </section>
         <main>
-            {/* <h2>Discover a world of flavors</h2> */}
             <section className="featured-cocktails">
+              <h2>Discover a world of flavors</h2>
               <div className="cocktails">
                 {
                   randomCocktailsElem &&
@@ -93,18 +92,11 @@ function Home() {
                 }
               </div>
             </section>
-            <video muted loop className="cocktails">
-              <source 
-              src={require('../assets/cocktails.mp4')} 
-              type="video/mp4" 
-              alt="Cocktails" 
-              />
-            </video>
-            <section className="featured-alcohols">
+            {/* <section className="featured-alcohols">
               {
                 featuredAlcoholsElem && featuredAlcoholsElem
               }
-            </section>
+            </section> */}
         </main>
     </div>
   )

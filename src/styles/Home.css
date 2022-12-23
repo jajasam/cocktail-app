@@ -2,38 +2,14 @@
     width: 100vw;
     z-index: -1;
     object-fit: cover;
-    background-color: rgba(243, 225, 194, 0.3);
-}
-
-.hero video {
-    display: none;
-}
-
-/* .video-wrapper::after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-} */
-
-video.cocktails {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    margin: 60px auto;
-    display: none;
+    background-color: rgba(243, 225, 194, 0.2);
 }
 
 main {
     padding: 0 1.15rem;
     margin: auto;
     max-width: 1111px;
+    position: relative;
 }
 
 /*
@@ -46,17 +22,6 @@ main {
     padding: 40px 1.15rem 60px 1.15rem;
     margin-bottom: 2rem;
     position: relative;
-}
-
-.intro::after {
-    content: "";
-    position: absolute;
-    background-color: rgba(243, 225, 194, 0.3);
-    width: 100%;
-    height: 100%;
-    top:0;
-    left: 0;
-    z-index: -1;
 }
 
 .intro h1 {
@@ -74,15 +39,18 @@ main {
 .intro p {
     opacity: 0.7;
     letter-spacing: normal;
-    margin-top: 0.4rem;
+    margin: 1.5rem auto 3rem 0;
     line-height: 24px;
+    max-width: 90%;
 }
 
 .intro a {
     color: black;
     text-decoration: none;
-    border-bottom: 1px solid black;
+    border-bottom: 0.5px solid black;
     transition: all 0.2s ease;
+    max-width: 145px;
+    text-align: center;
 }
 
 .intro a:hover {
@@ -102,13 +70,17 @@ main {
     gap: 2rem;
     justify-content: center;
     align-items: center;
+    position: relative;
+    height: 2500px;
 }
 
 .featured-cocktails .cocktail {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    width: 300px;
+    position: absolute;
+    text-decoration: none;
 }
 
 .featured-cocktails .cocktail:nth-child(2n) {
@@ -116,36 +88,129 @@ main {
 }
 
 .featured-cocktails .cocktail img {
-    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
     cursor: pointer;
     min-height: 350px;
     width: 100%;
     object-fit: cover;
-    transition: all 0.2s ease;
     z-index: 10;
+    transition: all 2s ease;
+}
+
+.featured-cocktails .cocktail:first-child {
+    left: 0;
+    top: 0;
+}
+
+.featured-cocktails .cocktail:first-child .cocktail-name {
+    left: -30px;
+    bottom: -50px;
+}
+
+.featured-cocktails .cocktail:nth-child(2) {
+    right: 0;
+    top: 300px;
+}
+
+.featured-cocktails .cocktail:nth-child(2) .cocktail-name {
+    left: 80px;
+    bottom: -50px;
+}
+
+.featured-cocktails .cocktail:nth-child(3) {
+    left: 0%;
+    top: 650px;
+}
+
+.featured-cocktails .cocktail:nth-child(3) .cocktail-name {
+    left: -30px;
+    bottom: -50px;
+}
+
+.featured-cocktails .cocktail:nth-child(4) {
+    left: 35%;
+    top: 1300px;
+}
+
+.featured-cocktails .cocktail:nth-child(4) .cocktail-name {
+    left: -30px;
+    bottom: -50px;
+}
+
+.featured-cocktails .cocktail:nth-child(5) {
+    left: 0;
+    top: 1800px;
+}
+
+.featured-cocktails .cocktail:nth-child(5) .cocktail-name {
+    left: -30px;
+    bottom: -50px;
+}
+
+.featured-cocktails .cocktail:nth-child(6) {
+    right: 0;
+    top: 2000px;
+}
+
+.featured-cocktails .cocktail:nth-child(6) .cocktail-name {
+    left: 100px;
+    bottom: -50px;
+}
+
+.featured-cocktails .cocktail img.visible {
+    transform: translateY(100px);
+    transition: all 2s ease;
+}
+
+.featured-cocktails h2 {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    font-size: 4rem;
+    text-align: center;
+    color: var(--dark-green);
 }
 
 .cocktail-name {
     text-transform: uppercase;
-    color: black;
+    color: var(--dark-green);
     font-size: 24px;
-    max-width: 300px;
+    width: 300px;
     margin-top: 0.5rem;
-}
-
-.fruits {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: none;
-}
-
-.fruit {
+    z-index: 10;
+    background-color: var(--light);
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
     position: absolute;
 }
 
 .fruit {
     position: absolute;
+}
+
+.fruit:nth-child(1) {
+    top: 5%;
+    right: 0;
+}
+
+.fruit:nth-child(2) {
+    top: 35%;
+    left: 60%;
+}
+
+.fruit:nth-child(3) {
+    top: 50%;
+    left: 20%;
+}
+
+.fruit:nth-child(4) {
+    top: 70%;
+    right: 0%;
+}
+
+.fruit:nth-child(5) {
+    bottom: 5%;
+    left: 30%;
 }
 
 /*
@@ -160,11 +225,14 @@ main {
     overflow: auto;
     overflow-y: hidden; 
     -ms-overflow-y: hidden;
+    height: 500px;
+    align-items: flex-end;
+    padding-bottom: 2rem;
 }
 
 .featured-alcohols div {
     position: relative;
-    width: 25%;
+    width: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -180,7 +248,7 @@ main {
 .featured-alcohols img {
     transform: rotate(25deg);
     position: absolute;
-    top: -5px;
+    top: -50px;
 }
 
 @media (min-width: 768px) {
@@ -190,37 +258,48 @@ main {
 }
 
 @media (min-width: 1111px) {
+    .hero {
+        display: flex;
+        margin-bottom: 160px;
+    }
     .intro h1 {
-        font-size: 1.5rem;
+        font-size: 2.1rem;
+        font-weight: 600;
+        letter-spacing: normal;
     }
 
     .hero img {
+        width: 48%;
+        height: 100vh;
+    }
+
+    /* .hero img {
         display: none;
-    }
-
-    .hero video {
-        display: block;
-    }
-
+    } */
+/* 
     .featured-alcohols img {
         width: 150px;
         height: 150px;
-    }
-
+    } */
+/* 
     .featured-alcohols img {
         top: -75px;
+    } */
+
+    .featured-cocktails .cocktail img {
+        height: 300px;
+        width: 350px;
     }
 
-    .cocktail-name {
-        font-size: 32px;
-    }   
-
-    .featured-cocktails .cocktail img:hover {
-        transform: scale(1.2);
+    .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 0;
+        width: 52%;
     }
 
-    video.cocktails {
-        margin: 160px auto;
-        display: block;
+    .intro div {
+        padding: 3.25rem;
     }
 }
