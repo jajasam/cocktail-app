@@ -1,23 +1,18 @@
-import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'
-import debounce from 'lodash.debounce'
 
 import '../styles/Header.css'
 
 function Header() {
-    const [topOffset, setTopOffset] = useState(0)
-    window.addEventListener('scroll', debounce(() => {
-        setTopOffset(window.pageYOffset)
-    }, 25))
+    const { pathname } = useLocation()
     
   return (
-    <header className={topOffset > 0 ? 'sticky' : ''}>
+    <header>
         <div className="content">
             <Link to="/">
                 <img 
-                src={require('../assets/logo.png')} 
+                src={require(`../assets/logo-${pathname.match(/cocktail/) ? 'dark' : 'light'}.png`)} 
                 alt="Cheers! Logo" 
-                className={`logo ${topOffset > 0 ? 'small' : ''}`}
+                className="logo"
                 />
             </Link>
         </div>
