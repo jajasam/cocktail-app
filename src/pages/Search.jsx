@@ -43,8 +43,8 @@ function Search() {
     .then(data => {
       if (data.ingredients) {
         return setResults(data.ingredients)
-      }
-    })
+      }})
+    .catch(err => console.error(err))
   }, [searchInputValue])
 
 
@@ -76,7 +76,6 @@ function Search() {
           value={searchInputValue}
           onChange={(e) => setSearchInputValue(e.target.value)}
           />
-          {/* Discover a world of flavors */}
           <img 
            src={searchIcon} 
            alt="Search Icon"

@@ -50,16 +50,16 @@ input:focus {
 ******************************************
 */
 .filters-btn {
-    position: absolute;
-    color: var(--light);
+    color: black;
     top: 0;
     right: 0;
-    border: 1.5px solid var(--light);
+    border: 1.5px solid black;
     padding: 0.25rem 1rem;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     font-weight: bold;
     z-index: 20;
+    width: 100px;
 }
 
 .filters-modal {
