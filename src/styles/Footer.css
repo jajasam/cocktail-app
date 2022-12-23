@@ -1,26 +1,15 @@
 footer {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-green);
     width: 100%;
-    height: 600px;
+    height: 40px;
     margin-top: 120px;
-    position: relative;
     color: var(--light);
+    display: flex;
+    justify-content: center;
 }
 
-footer img:nth-child(1) {
-    position: absolute;
-    top: -60px;
-    left: 1.15rem;
-}
-
-footer img:nth-child(2) {
-    position: absolute;
-    bottom: 0;
-    left: 1.15rem;
-}
-
-footer p {
-    position: absolute;
-    bottom: 8rem;
-    left: 1.15rem;
+footer small {
+    text-align: center;
+    line-height: 40px;
+    letter-spacing: normal;
 }
