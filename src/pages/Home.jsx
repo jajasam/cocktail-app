@@ -78,7 +78,7 @@ function Home() {
         </section>
         <main>
             <section className="featured-cocktails">
-              <h2>Discover a world of flavors</h2>
+              <h2>Discover a world of <span>flavors</span></h2>
               <div className="cocktails">
                 {
                   randomCocktailsElem &&

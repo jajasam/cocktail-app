@@ -68,10 +68,10 @@ main {
     flex-direction: column;
     position: relative;
     gap: 2rem;
-    justify-content: center;
     align-items: center;
     position: relative;
-    height: 2500px;
+    min-height: 2500px;
+    padding-top: 120px;
 }
 
 .featured-cocktails .cocktail {
@@ -79,12 +79,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     width: 300px;
-    position: absolute;
     text-decoration: none;
-}
-
-.featured-cocktails .cocktail:nth-child(2n) {
-    flex-direction: row-reserve;
 }
 
 .featured-cocktails .cocktail img {
@@ -96,79 +91,20 @@ main {
     transition: all 2s ease;
 }
 
-.featured-cocktails .cocktail:first-child {
-    left: 0;
-    top: 0;
-}
-
-.featured-cocktails .cocktail:first-child .cocktail-name {
-    left: -30px;
-    bottom: -50px;
-}
-
-.featured-cocktails .cocktail:nth-child(2) {
-    right: 0;
-    top: 300px;
-}
-
-.featured-cocktails .cocktail:nth-child(2) .cocktail-name {
-    left: 80px;
-    bottom: -50px;
-}
-
-.featured-cocktails .cocktail:nth-child(3) {
-    left: 0%;
-    top: 650px;
-}
-
-.featured-cocktails .cocktail:nth-child(3) .cocktail-name {
-    left: -30px;
-    bottom: -50px;
-}
-
-.featured-cocktails .cocktail:nth-child(4) {
-    left: 35%;
-    top: 1300px;
-}
-
-.featured-cocktails .cocktail:nth-child(4) .cocktail-name {
-    left: -30px;
-    bottom: -50px;
-}
-
-.featured-cocktails .cocktail:nth-child(5) {
-    left: 0;
-    top: 1800px;
-}
-
-.featured-cocktails .cocktail:nth-child(5) .cocktail-name {
-    left: -30px;
-    bottom: -50px;
-}
-
-.featured-cocktails .cocktail:nth-child(6) {
-    right: 0;
-    top: 2000px;
-}
-
-.featured-cocktails .cocktail:nth-child(6) .cocktail-name {
-    left: 100px;
-    bottom: -50px;
-}
-
-.featured-cocktails .cocktail img.visible {
-    transform: translateY(100px);
-    transition: all 2s ease;
-}
-
 .featured-cocktails h2 {
     position: absolute;
-    top: 40%;
-    left: 45%;
-    font-size: 4rem;
-    text-align: center;
+    font-size: 1.8rem;
     color: var(--dark-green);
+    text-align: center;
+    margin: auto;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top: 50px;
+    line-height: 50px;
 }
+
 
 .cocktail-name {
     text-transform: uppercase;
@@ -177,40 +113,10 @@ main {
     width: 300px;
     margin-top: 0.5rem;
     z-index: 10;
-    background-color: var(--light);
-    text-align: center;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    position: absolute;
 }
 
 .fruit {
-    position: absolute;
-}
-
-.fruit:nth-child(1) {
-    top: 5%;
-    right: 0;
-}
-
-.fruit:nth-child(2) {
-    top: 35%;
-    left: 60%;
-}
-
-.fruit:nth-child(3) {
-    top: 50%;
-    left: 20%;
-}
-
-.fruit:nth-child(4) {
-    top: 70%;
-    right: 0%;
-}
-
-.fruit:nth-child(5) {
-    bottom: 5%;
-    left: 30%;
+    display: none;
 }
 
 /*
@@ -218,7 +124,7 @@ main {
         FEATURED ALCOHOL SECTION 
 ******************************************
 */
-
+/* 
 .featured-alcohols {
     display: flex;
     gap: 1.5rem;
@@ -249,7 +155,7 @@ main {
     transform: rotate(25deg);
     position: absolute;
     top: -50px;
-}
+} */
 
 @media (min-width: 768px) {
     .hero img {
@@ -286,11 +192,6 @@ main {
         top: -75px;
     } */
 
-    .featured-cocktails .cocktail img {
-        height: 300px;
-        width: 350px;
-    }
-
     .intro {
         display: flex;
         flex-direction: column;
@@ -301,5 +202,152 @@ main {
 
     .intro div {
         padding: 3.25rem;
+    }
+
+    /*
+    ******************************************
+            COCKTAILS 
+    ******************************************
+    */
+    .featured-cocktails {
+        padding-top: 120px;
+    }
+
+    .featured-cocktails h2 {    
+        top: 40%;
+        left: 45%;
+        font-size: 3rem;
+        transform: translateX(0);
+        -webkit-transform: translateX(0%);
+        text-align: center;
+        margin-top: none;
+    }
+
+
+    .featured-cocktails h2 span {
+        font-family: 'Permanent Marker', cursive;
+        color: #157a0c;
+        font-size: 4rem;
+    }
+
+    .featured-cocktails .cocktail {
+        position: absolute;
+    }
+
+    .featured-cocktails .cocktail img {
+        height: 300px;
+        width: 350px;
+    }
+
+    .featured-cocktails .cocktail:first-child {
+        left: 0;
+        top: 0;
+    }
+    
+    .featured-cocktails .cocktail:first-child .cocktail-name {
+        left: -30px;
+        bottom: -50px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(2) {
+        right: 0;
+        top: 300px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(2) .cocktail-name {
+        left: 80px;
+        bottom: -50px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(3) {
+        left: 0%;
+        top: 650px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(3) .cocktail-name {
+        left: -30px;
+        bottom: -50px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(4) {
+        left: 35%;
+        top: 1300px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(4) .cocktail-name {
+        left: -30px;
+        bottom: -50px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(5) {
+        left: 0;
+        top: 1800px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(5) .cocktail-name {
+        left: -30px;
+        bottom: -50px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(6) {
+        right: 0;
+        top: 2000px;
+    }
+    
+    .featured-cocktails .cocktail:nth-child(6) .cocktail-name {
+        left: 100px;
+        bottom: -50px;
+    }
+    
+    .featured-cocktails .cocktail img.visible {
+        transform: translateY(100px);
+        transition: all 2s ease;
+    }
+
+    .cocktail-name {
+        position: absolute;
+        background-color: var(--light);
+        text-align: center;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+    }
+
+    /*
+    ******************************************
+            FRUITS 
+    ******************************************
+    */
+    .fruit {
+        position: absolute;
+        display: block;
+    }
+    
+    .fruit:nth-child(1) {
+        top: 5%;
+        right: 0;
+    }
+    
+    .fruit:nth-child(2) {
+        top: 35%;
+        left: 60%;
+    }
+    
+    .fruit:nth-child(3) {
+        top: 50%;
+        left: 20%;
+    }
+    
+    .fruit:nth-child(4) {
+        top: 70%;
+        right: 0%;
+    }
+    
+    .fruit:nth-child(5) {
+        bottom: 5%;
+        left: 30%;
+    }
+
+    .featured-cocktails h2 {
+        display: block;
     }
 }
